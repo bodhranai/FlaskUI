@@ -1,0 +1,35 @@
+<!doctype html>
+<head>
+    <title>Python Web API Call</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<html>
+   <body>
+     <main>
+        <div class="px-4 py-3 my-2 text-center">
+            <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/berkeley-logo.svg') }}" alt="LBL Logo" width="192" height="192"/>
+            <h1 class="display-6 fw-bold text-primary">Proposals</h1>            
+          </div>
+          <body>
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Abstract</th>
+            <th>Begin</th>
+            <th>End</th>
+        </tr>
+        {% for item in data %} 
+        <tr>
+        <td>{{item.abstract}}</td>
+        <td>{{item.beginDate}}</td>
+        <td>{{item.endDate}}</td>
+      </tr>
+      {% endfor %} 
+      </table>
+    
+    </div>
+          </body>
+        </main>      
+   </body>
+</html>
