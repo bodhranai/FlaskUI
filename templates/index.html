@@ -16,12 +16,33 @@
     
     <table class="table table-striped">
         <tr>
+            <th>Proposal #</th>
             <th>Abstract</th>
             <th>Begin</th>
             <th>End</th>
         </tr>
         {% for item in data %} 
         <tr>
+          <td>{{item.id}}</td>
+          <td><a id="user_{{item.id}}" data_id ="{{item.id}}"  href="#" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#userModal_{{item.id}}">{{item.proposalNumber}}</a>
+             <div class="modal fade" id ="userModal_{{item.id}}">  <!--tabindex="-1" role="dialog" -->
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Proposal Participants</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div id="modalBody_{{item.id}}" class="modal-body">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+           
+          </td>
         <td>{{item.abstract}}</td>
         <td>{{item.beginDate}}</td>
         <td>{{item.endDate}}</td>
@@ -30,7 +51,29 @@
       </table>
     
     </div>
+    </div>
           </body>
         </main>      
-   </body>
+   </body> 
+ 
 </html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $('a[id^="user"]').click(function(){
+         var id =  $(this).attr("data_id");
+         $.ajax({
+          url: '/users',
+          type:'post',
+          datatype: "Json",
+          data:{proposalId:id},
+          success: function(data)
+          {
+            $("#modalBody_" + id).html(data.htmlresponse);
+            alert($("#modalBody_" + id).html());
+            $("#userModal_" + id).show("fade");
+          
+          }
+         });
+      });
+
+   </script>

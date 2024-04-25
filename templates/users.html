@@ -1,0 +1,12 @@
+<table class = "table table-sm shadow">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    {% for item in data %} 
+    <tr>
+    <td>{{item.id}}</td>
+    <td>{{item.name}}</td>
+  </tr>
+  {% endfor %} 
+</table>
