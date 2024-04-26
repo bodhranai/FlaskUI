@@ -18,6 +18,7 @@
     
     <table class="table table-striped">
         <tr>
+            <th></th>
             <th>Proposal #</th>
             <th>Abstract</th>
             <th>Begin</th>
@@ -33,14 +34,14 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title">Proposal Participants</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button> -->
                   </div>
                   <div id="modalBody_{{item.id}}" class="modal-body">
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="button_{{item.id}}" data_id = "{{item.id}}""  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
@@ -78,6 +79,11 @@
           
           }
          });
+      });
+      $('button[id^="button"]').click(function(){
+         var id =  $(this).attr("data_id");
+         $("#userModal_" + id).modal('hide');
+        
       });
 
    </script>
